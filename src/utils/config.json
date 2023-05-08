@@ -1,0 +1,74 @@
+{
+  "commands":{
+    "JAVA_CMD": "java",
+    "GRAPHENE_JAR": "./utils/GraphaneTest-1.0-SNAPSHOT-jar-with-dependencies.jar",
+    "ADB_CMD": "adb"
+  },
+  "nlp": {
+    "sim_s2r_threshold": 0.6,
+    "use_openIE5": true,
+    "enable_context_analysis": true,
+    "enable_relation_analysis": true,
+    "retrieve_text_using_pattern": false,
+    "position_keywords": ["top", "bottom", "up", "down", "right", "left"],
+    "action_word_list":  {
+      "INPUT": ["input", "enter","type", "fill","write", "set","add", "out"],
+      "CLICK": ["click", "choose", "pick", "tap", "open", "press", "go", "select","launch"],
+      "ROTATE": ["rotate", "turn", "orient"],
+      "SWIPE": ["swipe", "slide"],
+      "SCROLL": ["scroll"]
+    },
+    "device_words": ["phone","device","orientation","screen","it"],
+    "multi_action_type_threshold":0.1,
+    "input_target_cue_words": ["in", "at", "on", "into", "for", "as"],
+    "input_value_cue_words": ["with","to"]
+  },
+  "rl": {
+    "training_epoch": 1000,
+    "allowed_missing_step_count": 5,
+    "default_input_text": "111111111111111",
+    "allow_out_of_order_s2r_match": false,
+    "init_q_value_with_reward": true,
+
+    "default_learning_rate": 0.7,
+    "default_epsilon": 0.3,
+    "default_epsilon_decay": 0.02,
+    "default_discount_factor": 0.99,
+
+    "reward_bar": 0.7,
+    "failure_penalty": -100000,
+    "missing_step_penalty": -1,
+    "success_reward": 1000,
+    "failure_reward": -2,
+    "reward_scale_base": 100,
+    "menu_drawer_init_q_value_scale": 0.5,
+    "scroll_default_reward": 0.7,
+    "swipe_default_reward": 0.7,
+    "rotate_default_reward": 0.7,
+    "default_action_type_tweak_threshold": 0.7,
+    "default_rotate_init_q_value": 10,
+    "default_swipe_init_q_value": 10,
+    "default_scroll_init_q_value": 70,
+    "default_input_init_q_value": 70,
+    "default_OK_init_q_value": 60,
+
+    "textual_similarity_reward_on": true,
+
+    "exploration_reward_on": true,
+    "use_state_based_epsilon": false,
+    "allow_match_missing_step_after_all_s2r": true,
+    "use_adhoc_reward_for_input": false,
+    "retrieve_text_from_siblings": true,
+    "include_content_dsc_resource_id_similarity": true,
+    "enable_menu_drawer_heuristic": true,
+    "enable_scroll_reward": false,
+    "enable_swipe_reward": false,
+    "enable_rotate_reward": false,
+    "enable_action_type_tweak": false,
+    "enable_init_q_value_for_rotate": true,
+    "enable_init_q_value_for_swipe": false,
+    "enable_init_q_value_for_scroll": true,
+    "enable_init_q_value_for_input": true,
+    "enable_init_q_value_for_OK": false
+  }
+}

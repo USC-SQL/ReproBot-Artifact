@@ -1,0 +1,35 @@
+version: '2'
+services:
+    reprobot:
+      privileged: true
+      image: "reprobot"
+      build:
+        context: ./
+        dockerfile: Dockerfile
+      cap_add:
+        - ALL
+      volumes:
+        - ../:/ReproBot
+      working_dir: /ReproBot
+      devices:
+        - /dev/kvm:/dev/kvm
+      depends_on:
+        openie:
+          condition: service_healthy
+      healthcheck:
+        test: "adb devices | grep emulator-5554"
+        start_period: 30s
+        retries: 5
+        interval: 30s
+        timeout: 10s
+      entrypoint: bash -c "yes | sdkmanager \"system-images;android-${API_VERSION};google_apis;x86\" && avdmanager create avd --force -n \"Nexus6API${API_VERSION}\" -k \"system-images;android-${API_VERSION};google_apis;x86\" -d \"Nexus 6\" && echo \"hw.keyboard=yes\" >> \"/opt/android-sdk-linux/.android/avd/Nexus6API${API_VERSION}.avd/config.ini\" && emulator -avd Nexus6API${API_VERSION} -no-window"
+    openie:
+      image: chengchingwen/openie
+      ports:
+        - 8000:8000
+      healthcheck:
+        test: "apt-get update && apt-get -y install curl && curl -X POST http://localhost:8000/getExtraction -d 'I like apple.'"
+        start_period: 30s
+        retries: 5
+        interval: 30s
+        timeout: 10s
