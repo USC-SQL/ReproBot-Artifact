@@ -1,8 +1,10 @@
 # Automatically Reproducing Android Bug Reports Using Natural Language Processing and Reinforcement Learning
 This is the artifact of paper Automatically Reproducing Android Bug Reports Using Natural
-Language Processing and Reinforcement Learning accepted by ISSTA 2023. In this paper, we proposed a novel approach to automatically reproduce Android bug reports. Our approach leverages advanced natural language process techniques to holistically and accurately analyze a given bug report and adopts reinforcement learning to effectively reproduce it. We implemented the approach into a tool -- ReproBot. 
+Language Processing and Reinforcement Learning accepted by ISSTA 2023. In this paper, we proposed a novel approach to automatically reproduce Android bug reports. Our approach leverages advanced natural language process techniques to holistically and accurately analyze a given bug report and adopts reinforcement learning to effectively reproduce it. We implemented the approach into a tool -- ReproBot. You can find the submission version of this paper [here](./submission.pdf).
 
 In the following, we first provide a quick running example for you to run ReproBot in [Getting Started](#getting-started). Then we show details to run ReproBot on our evaluation dataset and new subjects in [Detailed Description](#detailed-description).
+
+We attached a video TBD. to demonstrate the usage of our tool.
 
 ## Getting Started
 :exclamation::exclamation: There are files in this repository stored in Git Large File Storage. Please [install `git lfs`](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage) and run `git lfs pull` to get these files after cloning the repo.
