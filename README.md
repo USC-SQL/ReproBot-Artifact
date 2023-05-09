@@ -16,7 +16,7 @@ The following steps was tested using `docker` 20.10.8 and `docker-compose` 1.29.
 Please make sure you have at least 40 GB on your machine's disk to run the following example.
 
 ### Step 1: Obtain docker image
-To run ReproBot, we need two docker images. One is used to run ReproBot's main code. Another is to run an underlying tool the provides services that ReproBot needs.
+To run ReproBot, we need two docker images. One is used to run ReproBot's main code. Another is to run an underlying tool that provides services that ReproBot needs.
 First, run the following command in the "BuildEnvironment" folder to build the docker image using the [Dockerfile](./BuildEnvironment/Dockerfile). 
 ```bash
 # Estimated Time: 18m. Note: depending on your network condition, this may take longger time to finish.
@@ -34,7 +34,7 @@ Specifically, run the following command in the "BuildEnvironment" directory to s
 # Estimated Time: 4m.
 export API_VERSION=23 && docker-compose up -d --force-recreate
 ```
-This command will create and start both the reprobot container and the openie container. For the reprobot container, it will also create and start the Android emulator with the specified Android version. To explain, the first `export` command delares an environment variable, which tells the reprobot container which version of the Android emulator to create and start. In this tutorial, the example bug report is reported on Android 6 whose corresponding API level is 23. If you need to run other version of Android OS, please replace 23 with corresponding API level (you can find the corresponding API level for an Android version [here](https://commonsware.com/Jetpack/pages/chap-resourcetour-002.html).
+This command will create and start both the reprobot container and the openie container. Within the reprobot container, it will also create and start the Android emulator with the specified Android version. To explain, the first `export` command delares an environment variable, which tells the reprobot container which version of the Android emulator to create and start. In this tutorial, the example bug report is reported on Android 6 whose corresponding API level is 23. If you need to run other version of Android OS, please replace 23 with corresponding API level (you can find the corresponding API level for an Android version [here](https://commonsware.com/Jetpack/pages/chap-resourcetour-002.html).
 
 Once the above command finished running, please use the command `docker ps` to see the status of started containers. Once both of their status show as "healthy", you can proceed to the next step.
 
@@ -75,7 +75,7 @@ You can download the dataset from [here](https://drive.google.com/drive/folders/
 * SetupScripts: the setup script for each subject.
 
 ### ReproBot Specification
-The source code of ReproBot is under "src" folder and the main driver of ReproBot is the "./src/tool_main.py" file. To run it, you can run `python tool_main.py` in the "src" folder with the input arguments as described below. 
+The source code of ReproBot is under "src" folder and the main driver of ReproBot is the "./src/tool_main.py" file. The input arguments of the main file are described below. 
 #### Input Arguments
 Here are the main arguments it takes to run ReproBot on a subject:
 * --apkFile: the path to the apk file to be analyzed.
@@ -101,9 +101,9 @@ In the output folder contains the following sub-folders:
 To run a subject from our dataset, please first download [our dataset](#evaluation-dataset). Please replace the example files in "TestInput" with corresponding files of the desired subject (rename as well). Then follow the steps in [Getting Started](#getting-started) to run ReproBot on it.
 
 #### Without Docker
-If you want to set up all such on your local machine instead of using docker, first please follow the steps below to set up your local environment:
+To run reprobot on a subject from your local machine instead of docker, first please follow the steps below to set up your local environment:
 1. Install Java 1.8 or 11 and have it accessible from command line.
-2. Install [Android SDK tools](https://guides.codepath.com/android/installing-android-sdk-tools) and have the `adb` command accessible from command line.
+2. Install [Android SDK tools](https://guides.codepath.com/android/installing-android-sdk-tools) and make sure the `adb` command accessible from command line.
 3. Install Python 3.7 and install the python dependencies in [requirements.txt](./BuildEnvironment/requirements.txt) by running `pip install -r requirements.txt` in the "BuildEnvironment" directory. 
 4. Our tool uses Spacy for natural language process. Please install the language model needed by Spacy by running `python -m spacy download en_core_web_lg`.
 5. Our tool use OpenIE5 to perform extraction from natural language sentences. In order to run OpenIE5, please first download its Docker image by running `docker pull chengchingwen/openie`. 
@@ -124,6 +124,6 @@ To run ReproBot on new subjects, you first need to prepare the required input fi
 1. Bug report file: a `.txt` file that contains the sentences of reproduction steps of a bug report. Please put each sentence in one line.
 2. APK file: the APK file of the app that the report can be reproduced on.
 3. Crash log file: a `.txt` file that contains a line of error message the will show up in Android device log (can be obtained from the output of `adb logcat`) when the crash is triggered.
-4. Setup script file: if the reproduction of the bug report needs some setup steps, such as login or grating permission, please use UIAutomator scripts to specify them in this file. Please use the template provided [here](./Evaluation/template.py) to create this script (only need to add scripts in the `run` method).
+4. Setup script file: if the reproduction of the bug report needs some setup steps, such as login or grating permission, please use UIAutomator scripts to specify them in this file following [the official instructions](https://developer.android.com/training/testing/other-components/ui-automator). Please use the template provided [here](./Evaluation/template.py) to create this script (only need to add scripts in the `run` method).
 
 These steps create the files in the "TestInput" folder. Once you finish above steps, you can replace the files in the "TestInput" folder with the new subject's files and following the steps in [Getting Started](#getting-started) to run ReproBot on it.
