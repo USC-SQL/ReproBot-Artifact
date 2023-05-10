@@ -4,7 +4,7 @@ Language Processing and Reinforcement Learning accepted by ISSTA 2023. In this p
 
 In the following, we first provide a quick running example for you to run ReproBot in [Getting Started](#getting-started). Then we show details to run ReproBot on our evaluation dataset and new subjects in [Detailed Description](#detailed-description).
 
-We attached a video TBD. to demonstrate the usage of our tool.
+We attached [a video](https://www.youtube.com/watch?v=612Q8Y6THc8) to demonstrate the usage of our tool.
 
 ## Getting Started
 :exclamation::exclamation: There are files in this repository stored in Git Large File Storage. Please [install `git lfs`](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage) and run `git lfs pull` to get these files after cloning the repo.
